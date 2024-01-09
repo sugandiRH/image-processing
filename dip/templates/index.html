@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter App Morphological Pyramid Decomposition</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        .pyramid-img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Image Filter App With Morphological Pyramid Decomposition</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <label for="file" class="custom-file-upload">
+                Select Image
+            </label>
+            <input type="file" id="file" name="file" accept=".png, .jpg, .jpeg, .gif" required>
+            <input type="submit" class="btn btn-primary" value="Upload and Filter">
+        </form>
+
+        {% if original_image %}
+            {% if decomposed_image_paths %}
+                {% for i in range(decomposed_image_paths|length) %}
+                    <h2>Decomposed Image Pyramid {{ i }}</h2>
+                    {% for j in range(decomposed_image_paths[i]|length) %}
+                        <img class="pyramid-img" src="{{ decomposed_image_paths[i][j] }}" alt="Decomposed Image">
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    
+
+
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
